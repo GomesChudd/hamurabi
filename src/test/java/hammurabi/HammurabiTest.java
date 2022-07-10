@@ -60,10 +60,9 @@ public class HammurabiTest {
 
     @Test
     public final void testHarvest() {
-        // TODO need to see how this test is using randoms
         int[] yield = new int[7];
         for (int i = 0; i < 1000; i++) {
-            int harvest = Calculations.harvest(1, 100); // 100 added here by Ryan to compile
+            int harvest = Calculations.harvest(1);
             assertTrue("Illegal harvest per acre: " + harvest, harvest > 0 && harvest <= 6);
             yield[harvest] += 1;
         }

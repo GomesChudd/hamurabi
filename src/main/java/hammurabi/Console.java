@@ -9,6 +9,7 @@ public class Console {
     int bushelsGrain = 2800;
     int bushelsToFeed;
     int bushelsHarvested = 3000;
+    int acresToFarm = 1000;
     int bushelsEatenByRats = 200;
     int population = 100;
     int landValue = 19;
@@ -33,9 +34,12 @@ public class Console {
             if(starvation()) break;
             // IMMIGRATION
             immigration();
-            // TODO HARVEST (update harvest quality for summary)
-            // TODO RATS (add to running death total)
-            // TODO VARIABLE LAND COST
+            // HARVEST
+            harvest();
+            // RATS
+            rats();
+            // NEW LAND COST
+            landValue = Calculations.newCostOfLand();
             currentYear++;
         }
         review();
@@ -61,13 +65,12 @@ public class Console {
 
         System.out.println("O great Hammurabi!\n" +
                 "You are in year " + currentYear + " of your ten year rule.");
-        if (plague) System.out.println("Plague has stricken your people and HALF of them perished");
+        if (plague) System.out.println("Plague has stricken your people and HALF of them perished.");
         System.out.println("In the previous year " + deaths + " people starved to death.\n" +
                 "In the previous year " + immigrants + " people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
-                "We harvested " + bushelsHarvested + " bushels at 3 bushels per acre.\n" +
-                //"Rats destroyed " + bushelsEatenByRats + " bushels, leaving 2800 bushels in storage.\n" +
-                "We now have " + bushelsGrain + " bushels of grain.\n" +
+                "We harvested " + bushelsHarvested + " bushels at " + harvestQuality + " bushels per acre.\n" +
+                "Rats destroyed " + bushelsEatenByRats + " bushels, leaving " + bushelsGrain + " bushels in storage.\n" +
                 "The city owns " + acres + " acres of land.\n" +
                 "Land is currently worth " + landValue + " bushels per acre.");
 
@@ -86,7 +89,7 @@ public class Console {
                     "\nIn your ten year term, Hammurabi, " + runningDeathTotal + " of your subjects have died\n" +
                     "through plague, rats, and starvation. \n\nHowever, your kingdom persevered!\n" +
                     "\nYou leave your term with " + bushelsGrain + " bushels of grain \n" +
-                    "and " + acres + "\n acres of land.");
+                    "and " + acres + " acres of land.");
         }
 
     }
@@ -151,8 +154,7 @@ public class Console {
             } else if (num * 2 > bushelsGrain) {
                 System.out.println("O no! You do not have enough grain for that! \n");
             } else {
-                bushelsHarvested = num;
-                bushelsGrain += num; //Karem will add harvest method for randomization
+                acresToFarm = num;
                 break;
             }
         }
@@ -192,6 +194,17 @@ public class Console {
             immigrants = 0;
         }
 
+    }
+
+    public void harvest() {
+        bushelsHarvested = Calculations.harvest(acresToFarm);
+        harvestQuality = bushelsHarvested / acresToFarm;
+        bushelsGrain += (harvestQuality - 2) * acresToFarm;
+    }
+
+    public void rats() {
+        bushelsEatenByRats = Calculations.grainEatenByRats(bushelsGrain);
+        bushelsGrain -= bushelsEatenByRats;
     }
 
     public int getNumber(String message) {

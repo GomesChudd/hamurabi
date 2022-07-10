@@ -24,9 +24,8 @@ public class Calculations {
         return (20 * acresOwned + grainInStorage) / (100 * population) + 1;
     }
 
-    public static Integer harvest(int acres, int bushelsUsedAsSeed) {
-       return acres * (rand.nextInt(6 - 1 + 1) +1);
-
+    public static Integer harvest(int acres) {
+       return acres * (rand.nextInt(6) + 1);
     }
 
     public static Integer grainEatenByRats(int bushels) {
