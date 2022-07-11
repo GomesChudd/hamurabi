@@ -2,10 +2,9 @@ package hammurabi;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
-public class HammurabiTest {
+public class CalculationsTest {
     
     boolean about(double expected, double actual) {
         return actual > 0.90 * expected && actual < 1.10 * expected;
