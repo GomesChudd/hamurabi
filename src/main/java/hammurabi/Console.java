@@ -3,22 +3,41 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console {
-    Scanner scan = new Scanner(System.in);
-    int currentYear = 1;
-    int acres = 1000;
-    int bushelsGrain = 2800;
+    Scanner scan;
+    int currentYear;
+    int acres;
+    int bushelsGrain;
     int bushelsToFeed;
-    int bushelsHarvested = 3000;
-    int acresToFarm = 1000;
-    int bushelsEatenByRats = 200;
-    int population = 100;
-    int landValue = 19;
-    int deaths = 0;
-    int runningDeathTotal = 0;
-    boolean plague = false;
-    boolean uprising = false;
-    int immigrants = 5;
-    int harvestQuality = 3;
+    int bushelsHarvested;
+    int acresToFarm;
+    int bushelsEatenByRats;
+    int population;
+    int landValue;
+    int deaths;
+    int runningDeathTotal;
+    boolean plague;
+    boolean uprising;
+    int immigrants;
+    int harvestQuality;
+
+    public Console() {
+        scan = new Scanner(System.in);
+        currentYear = 1;
+        acres = 1000;
+        bushelsGrain = 2800;
+        bushelsToFeed = 0;
+        bushelsHarvested = 3000;
+        acresToFarm = 1000;
+        bushelsEatenByRats = 200;
+        population = 100;
+        landValue = 19;
+        deaths = 0;
+        runningDeathTotal = 0;
+        plague = false;
+        uprising = false;
+        immigrants = 5;
+        harvestQuality = 3;
+    }
 
     public void playGame() {
         instructions();
